@@ -356,8 +356,8 @@
             distance = distance.toFixed(precision); // round to 1mm precision
 
             //if (start.hasOwnProperty(elevation) && end.hasOwnProperty(elevation)) {
-            if (typeof this.elevation(start) !== 'undefined' && typeof this.elevation(end) !== 'undefined') {
-                var climb = Math.abs(this.elevation(start) - this.elevation(end));
+            if (typeof start.elevation !== 'undefined' && typeof end.elevation !== 'undefined') {
+                var climb = Math.abs(start.elevation - end.elevation);
                 distance = Math.sqrt(distance * distance + climb * climb);
             }
 
