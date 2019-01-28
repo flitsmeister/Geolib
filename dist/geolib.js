@@ -2,11 +2,11 @@
 * Library to provide geo functions like distance calculation,
 * conversion of decimal coordinates to sexagesimal and vice versa, etc.
 * WGS 84 (World Geodetic System 1984)
-* 
+*
 * @author Manuel Bieh
 * @url http://www.manuelbieh.com/
 * @version 2.0.23
-* @license MIT 
+* @license MIT
 **/;(function(global, undefined) {
 
     "use strict";
@@ -244,16 +244,13 @@
             accuracy = Math.floor(accuracy) || 1;
             precision = Math.floor(precision) || 0;
 
-            var s = this.coords(start);
-            var e = this.coords(end);
-
             var a = 6378137, b = 6356752.314245,  f = 1/298.257223563;  // WGS-84 ellipsoid params
-            var L = (e['longitude']-s['longitude']).toRad();
+            var L = (end['longitude']-start['longitude']).toRad();
 
             var cosSigma, sigma, sinAlpha, cosSqAlpha, cos2SigmaM, sinSigma;
 
-            var U1 = Math.atan((1-f) * Math.tan(parseFloat(s['latitude']).toRad()));
-            var U2 = Math.atan((1-f) * Math.tan(parseFloat(e['latitude']).toRad()));
+            var U1 = Math.atan((1-f) * Math.tan(parseFloat(start['latitude']).toRad()));
+            var U2 = Math.atan((1-f) * Math.tan(parseFloat(end['latitude']).toRad()));
             var sinU1 = Math.sin(U1), cosU1 = Math.cos(U1);
             var sinU2 = Math.sin(U2), cosU2 = Math.cos(U2);
 
