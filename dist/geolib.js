@@ -249,8 +249,8 @@
 
             var cosSigma, sigma, sinAlpha, cosSqAlpha, cos2SigmaM, sinSigma;
 
-            var U1 = Math.atan((1-f) * Math.tan(parseFloat(start['latitude']).toRad()));
-            var U2 = Math.atan((1-f) * Math.tan(parseFloat(end['latitude']).toRad()));
+            var U1 = Math.atan((1-f) * Math.tan(start['latitude'].toRad()));
+            var U2 = Math.atan((1-f) * Math.tan(end['latitude'].toRad()));
             var sinU1 = Math.sin(U1), cosU1 = Math.cos(U1);
             var sinU2 = Math.sin(U2), cosU2 = Math.cos(U2);
 
