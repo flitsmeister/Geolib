@@ -145,7 +145,7 @@
         // returns latitude of a given point, converted to decimal
         // set raw to true to avoid conversion
         getLat: function(point, raw) {
-            return raw === true ? point[this.getKeys(point).latitude] : this.useDecimal(point[this.getKeys(point).latitude]);
+            return point.latitude;
         },
 
         // Alias for getLat
@@ -156,7 +156,7 @@
         // returns longitude of a given point, converted to decimal
         // set raw to true to avoid conversion
         getLon: function(point, raw) {
-            return raw === true ? point[this.getKeys(point).longitude] : this.useDecimal(point[this.getKeys(point).longitude]);
+            return point.longitude;
         },
 
         // Alias for getLon
@@ -165,7 +165,7 @@
         },
 
         getElev: function(point) {
-            return point[this.getKeys(point).elevation];
+            return point.elevation;
         },
 
         // Alias for getElev
@@ -174,20 +174,7 @@
         },
 
         coords: function(point, raw) {
-
-            var retval = {
-                latitude: raw === true ? point[this.getKeys(point).latitude] : this.useDecimal(point[this.getKeys(point).latitude]),
-                longitude: raw === true ? point[this.getKeys(point).longitude] : this.useDecimal(point[this.getKeys(point).longitude])
-            };
-
-            var elev = point[this.getKeys(point).elevation];
-
-            if(typeof elev !== 'undefined') {
-                retval['elevation'] = elev;
-            }
-
-            return retval;
-
+            return point;
         },
 
         // Alias for coords
