@@ -2,11 +2,11 @@
 * Library to provide geo functions like distance calculation,
 * conversion of decimal coordinates to sexagesimal and vice versa, etc.
 * WGS 84 (World Geodetic System 1984)
-* 
+*
 * @author Manuel Bieh
 * @url http://www.manuelbieh.com/
 * @version 2.0.23
-* @license MIT 
+* @license MIT
 **/;(function(global, undefined) {
 
     "use strict";
@@ -145,7 +145,7 @@
         // returns latitude of a given point, converted to decimal
         // set raw to true to avoid conversion
         getLat: function(point, raw) {
-            return raw === true ? point[this.getKeys(point).latitude] : this.useDecimal(point[this.getKeys(point).latitude]);
+            return point.latitude;
         },
 
         // Alias for getLat
@@ -156,7 +156,7 @@
         // returns longitude of a given point, converted to decimal
         // set raw to true to avoid conversion
         getLon: function(point, raw) {
-            return raw === true ? point[this.getKeys(point).longitude] : this.useDecimal(point[this.getKeys(point).longitude]);
+            return point.longitude;
         },
 
         // Alias for getLon
@@ -165,7 +165,7 @@
         },
 
         getElev: function(point) {
-            return point[this.getKeys(point).elevation];
+            return point.elevation;
         },
 
         // Alias for getElev
@@ -174,20 +174,7 @@
         },
 
         coords: function(point, raw) {
-
-            var retval = {
-                latitude: raw === true ? point[this.getKeys(point).latitude] : this.useDecimal(point[this.getKeys(point).latitude]),
-                longitude: raw === true ? point[this.getKeys(point).longitude] : this.useDecimal(point[this.getKeys(point).longitude])
-            };
-
-            var elev = point[this.getKeys(point).elevation];
-
-            if(typeof elev !== 'undefined') {
-                retval['elevation'] = elev;
-            }
-
-            return retval;
-
+            return point;
         },
 
         // Alias for coords
@@ -244,16 +231,13 @@
             accuracy = Math.floor(accuracy) || 1;
             precision = Math.floor(precision) || 0;
 
-            var s = this.coords(start);
-            var e = this.coords(end);
-
             var a = 6378137, b = 6356752.314245,  f = 1/298.257223563;  // WGS-84 ellipsoid params
-            var L = (e['longitude']-s['longitude']).toRad();
+            var L = (end['longitude']-start['longitude']).toRad();
 
             var cosSigma, sigma, sinAlpha, cosSqAlpha, cos2SigmaM, sinSigma;
 
-            var U1 = Math.atan((1-f) * Math.tan(parseFloat(s['latitude']).toRad()));
-            var U2 = Math.atan((1-f) * Math.tan(parseFloat(e['latitude']).toRad()));
+            var U1 = Math.atan((1-f) * Math.tan(start['latitude'].toRad()));
+            var U2 = Math.atan((1-f) * Math.tan(end['latitude'].toRad()));
             var sinU1 = Math.sin(U1), cosU1 = Math.cos(U1);
             var sinU2 = Math.sin(U2), cosU2 = Math.cos(U2);
 
@@ -359,8 +343,8 @@
             distance = distance.toFixed(precision); // round to 1mm precision
 
             //if (start.hasOwnProperty(elevation) && end.hasOwnProperty(elevation)) {
-            if (typeof this.elevation(start) !== 'undefined' && typeof this.elevation(end) !== 'undefined') {
-                var climb = Math.abs(this.elevation(start) - this.elevation(end));
+            if (typeof start.elevation !== 'undefined' && typeof end.elevation !== 'undefined') {
+                var climb = Math.abs(start.elevation - end.elevation);
                 distance = Math.sqrt(distance * distance + climb * climb);
             }
 
