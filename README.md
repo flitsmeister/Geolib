@@ -1,5 +1,10 @@
 # Geolib
-[![Build Status](https://secure.travis-ci.org/manuelbieh/Geolib.png?branch=master)](http://travis-ci.org/manuelbieh/Geolib)
+
+## Custom forked version for Flitsmeister.
+
+We made several performance improvements, for own use.
+
+## OG Readme:
 
 Library to provide basic geospatial operations like distance calculation, conversion of decimal coordinates to sexagesimal and vice versa, etc.
 
@@ -181,7 +186,7 @@ Returns calculated bearing as integer.
 <h4>Example</h4>
 
 <pre>geolib.getRhumbLineBearing(
-    {latitude: 52.518611, longitude: 13.408056}, 
+    {latitude: 52.518611, longitude: 13.408056},
     {latitude: 51.519475, longitude: 7.46694444}
 );</pre>
 
@@ -193,7 +198,7 @@ Returns calculated bearing as integer.
 <h4>Example</h4>
 
 <pre>geolib.getBearing(
-    {latitude: 52.518611, longitude: 13.408056}, 
+    {latitude: 52.518611, longitude: 13.408056},
     {latitude: 51.519475, longitude: 7.46694444}
 );</pre>
 
@@ -206,7 +211,7 @@ Returns an object with a rough (NESW) and an exact direction (NNE, NE, ENE, E, E
 <h4>Example</h4>
 
 <pre>geolib.getCompassDirection(
-    {latitude: 52.518611, longitude: 13.408056}, 
+    {latitude: 52.518611, longitude: 13.408056},
     {latitude: 51.519475, longitude: 7.46694444}
 );
 //Output

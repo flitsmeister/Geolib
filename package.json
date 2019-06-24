@@ -1,13 +1,13 @@
 {
-  "name": "fm-geolib",
-  "homepage": "http://github.com/manuelbieh/Geolib",
+  "name": "@flitsmeister/geolib",
+  "homepage": "https://github.com/flitsmeister/geolib",
   "author": {
     "name": "Manuel Bieh",
     "url": "http://www.manuelbieh.com/"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/manuelbieh/geolib.git"
+    "url": "https://github.com/flitsmeister/geolib.git"
   },
   "devDependencies": {
     "eslint-config-wiremore": "^1.2.0",
